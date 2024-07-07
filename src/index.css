@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@base {
+@layer base {
     body {
-        @apply text-dark font-bold;
+        @apply font-bold text-dark;
     }
 }

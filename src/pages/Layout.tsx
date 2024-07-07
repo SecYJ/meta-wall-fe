@@ -1,17 +1,26 @@
-import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
-import avatarLg from "../../public/user-lg.png";
-import Box from "../components/Box";
-
-const AVATAR_LINK =
-    "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT12Jcz6LAkbx0AF5u0XMdYoJTtYu1u5LBtPEh35lnsOoslPoEX";
+import { Box, Header, PageTitle } from "@/components";
+import { ROUTES } from "@/constants";
+import { FaRegBell } from "react-icons/fa";
+import { LuThumbsUp } from "react-icons/lu";
+import { NavLink, Outlet, useMatches } from "react-router-dom";
+import avatarLg from "/user-lg.png";
 
 const Layout = () => {
+    const matches = useMatches();
+    const hasTitle = matches.filter(
+        (match) => match.handle && "title" in match.handle,
+    );
+
     return (
         <>
             <Header />
+            {/* <PageTitle>test</PageTitle> */}
             <div className="container mt-12 grid grid-cols-[7fr_5fr] gap-7">
                 <main>
+                    {/* NOTE: fix type error later */}
+                    {hasTitle.length > 0 && (
+                        <PageTitle>{hasTitle.at(-1).handle.title}</PageTitle>
+                    )}
                     <Outlet />
                 </main>
                 <Box as="aside" className="sticky top-0 self-start px-6 py-8">
@@ -30,21 +39,28 @@ const Layout = () => {
                             />
                             <p>邊緣小杰</p>
                         </li>
-                        <li className="flex items-center gap-4">
-                            <img
-                                src={AVATAR_LINK}
-                                alt="Liao Wei Jie"
-                                className="size-12 rounded-full object-cover"
-                            />
-                            <p>追蹤名單</p>
+                        <li>
+                            <NavLink
+                                to={ROUTES.FOLLOWING}
+                                className="flex items-center gap-4"
+                            >
+                                <Box className="grid size-12 place-items-center overflow-hidden rounded-full bg-[#E2EDFA]">
+                                    <FaRegBell className="size-5 text-dark" />
+                                </Box>
+
+                                <p>追蹤名單</p>
+                            </NavLink>
                         </li>
-                        <li className="flex items-center gap-4">
-                            <img
-                                src={AVATAR_LINK}
-                                alt="Liao Wei Jie"
-                                className="size-12 rounded-full object-cover"
-                            />
-                            <p>我按讚的文章</p>
+                        <li>
+                            <button
+                                type="button"
+                                className="flex items-center gap-4"
+                            >
+                                <Box className="grid size-12 place-items-center overflow-hidden rounded-full bg-[#E2EDFA]">
+                                    <LuThumbsUp className="size-5 text-dark" />
+                                </Box>
+                                <p>我按讚的文章</p>
+                            </button>
                         </li>
                     </ul>
                 </Box>
