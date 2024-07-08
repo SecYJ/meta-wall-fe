@@ -11,7 +11,7 @@ const AccountEditPasswordPage = () => {
                             type="text"
                             id="輸入新密碼"
                             placeholder="請輸入新密碼"
-                            className="w-full px-6 py-4 placeholder:text-shadow"
+                            className="w-full px-6 py-3.5 placeholder:text-shadow"
                         />
                     </Box>
                 </fieldset>
@@ -22,14 +22,14 @@ const AccountEditPasswordPage = () => {
                             type="text"
                             id="再次輸入"
                             placeholder="請輸入新密碼"
-                            className="w-full px-6 py-4 placeholder:text-shadow"
+                            className="w-full px-6 py-3.5 placeholder:text-shadow"
                         />
                     </Box>
                 </fieldset>
             </form>
             <Box
                 as="button"
-                className="bg-silver mt-8 w-full rounded-lg border-[#808080] py-4 text-white"
+                className="mt-8 w-full rounded-lg border-[#808080] bg-silver py-4 text-white"
             >
                 重設密碼
             </Box>

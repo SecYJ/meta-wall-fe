@@ -11,7 +11,10 @@ const PageTitle = ({
 }: PropsWithChildren<Props>) => {
     return (
         <Box
-            className={cn("relative bg-white py-4 text-center", className)}
+            className={cn(
+                "relative bg-white py-4 text-center text-xl",
+                className,
+            )}
             {...props}
             as="h1"
         >

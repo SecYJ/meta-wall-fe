@@ -2,7 +2,7 @@ import { Box, Header, PageTitle } from "@/components";
 import { ROUTES } from "@/constants";
 import { FaRegBell } from "react-icons/fa";
 import { LuThumbsUp } from "react-icons/lu";
-import { NavLink, Outlet, useMatches } from "react-router-dom";
+import { Link, NavLink, Outlet, useMatches } from "react-router-dom";
 import avatarLg from "/user-lg.png";
 
 const Layout = () => {
@@ -24,11 +24,13 @@ const Layout = () => {
                     <Outlet />
                 </main>
                 <Box as="aside" className="sticky top-0 self-start px-6 py-8">
-                    <Box
-                        as="p"
-                        className="mb-5 rounded-lg bg-primary py-4 text-center leading-tight text-white drop-shadow"
-                    >
-                        張貼動態
+                    <Box rounded className="mb-5 drop-shadow">
+                        <Link
+                            to={ROUTES.POST_CREATION}
+                            className="block bg-primary py-4 text-center leading-tight text-white"
+                        >
+                            張貼動態
+                        </Link>
                     </Box>
                     <ul className="space-y-5">
                         <li className="flex items-center gap-4">
@@ -52,15 +54,26 @@ const Layout = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <button
-                                type="button"
+                            <NavLink
+                                to={ROUTES.LIKED_POSTS}
                                 className="flex items-center gap-4"
                             >
                                 <Box className="grid size-12 place-items-center overflow-hidden rounded-full bg-[#E2EDFA]">
                                     <LuThumbsUp className="size-5 text-dark" />
                                 </Box>
                                 <p>我按讚的文章</p>
-                            </button>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/user001"
+                                className="flex items-center gap-4"
+                            >
+                                <Box className="grid size-12 place-items-center overflow-hidden rounded-full bg-[#E2EDFA]">
+                                    <LuThumbsUp className="size-5 text-dark" />
+                                </Box>
+                                <p>Profile Page</p>
+                            </NavLink>
                         </li>
                     </ul>
                 </Box>

@@ -1,13 +1,20 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
-import { FollowingPage, HomePage, Layout } from "./pages";
+import { ErrorBoundary } from "./components";
+import { ROUTES } from "./constants";
+import {
+    FollowingPage,
+    HomePage,
+    Layout,
+    LikedPostsPage,
+    PostCreationPage,
+    ProfilePage,
+} from "./pages";
 import {
     AccountEditPage,
     AccountEditPasswordPage,
     AccountLayout,
 } from "./pages/account";
-import { ROUTES } from "./constants";
-import { ErrorBoundary } from "./components";
 
 const App = () => {
     const router = createBrowserRouter([
@@ -44,6 +51,24 @@ const App = () => {
                             element: <AccountEditPasswordPage />,
                         },
                     ],
+                },
+                {
+                    path: ROUTES.POST_CREATION,
+                    element: <PostCreationPage />,
+                    handle: {
+                        title: "張貼動態",
+                    },
+                },
+                {
+                    path: ROUTES.LIKED_POSTS,
+                    element: <LikedPostsPage />,
+                    handle: {
+                        title: "我按讚的貼文",
+                    },
+                },
+                {
+                    path: ROUTES.USERNAME,
+                    element: <ProfilePage />,
                 },
             ],
         },

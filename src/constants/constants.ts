@@ -5,4 +5,7 @@ export const ROUTES = {
         EDIT: "/account/edit",
         PASSWORD: "/account/edit/password",
     },
+    POST_CREATION: "/post-creation",
+    LIKED_POSTS: "/liked-posts",
+    USERNAME: "/:username",
 } as const;
