@@ -8,4 +8,5 @@ export const ROUTES = {
     POST_CREATION: "/post-creation",
     LIKED_POSTS: "/liked-posts",
     USERNAME: "/:username",
+    AUTH: "/auth",
 } as const;

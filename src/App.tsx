@@ -15,6 +15,7 @@ import {
     AccountEditPasswordPage,
     AccountLayout,
 } from "./pages/account";
+import { AuthPage } from "./pages/auth";
 
 const App = () => {
     const router = createBrowserRouter([
@@ -71,6 +72,10 @@ const App = () => {
                     element: <ProfilePage />,
                 },
             ],
+        },
+        {
+            path: ROUTES.AUTH,
+            element: <AuthPage />,
         },
     ]);
 
