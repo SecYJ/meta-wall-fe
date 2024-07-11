@@ -2,33 +2,45 @@ import { Box } from "@/components";
 import Input from "@/components/ui/form/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import {
     AuthSchemaType,
     loginSchema,
     registrationSchema,
 } from "./schemas/authSchema";
+import { useRegistration } from "./hooks/useRegistration";
+import { useLogin } from "./hooks/useLogin";
 
 const AuthPage = () => {
     const [authState, setAuthState] = useState<"login" | "register">("login");
     const isLogin = authState === "login";
+    const registration = useRegistration();
+    const login = useLogin();
 
     const { handleSubmit, control } = useForm<AuthSchemaType>({
         resolver: zodResolver(isLogin ? loginSchema : registrationSchema),
-        defaultValues: isLogin
-            ? {
-                  email: "",
-                  password: "",
-              }
-            : {
-                  nickname: "",
-                  email: "",
-                  password: "",
-              },
+        resetOptions: { keepDirtyValues: true },
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+        values: {
+            email: "",
+            password: "",
+            ...(isLogin && { username: "" }),
+        },
     });
 
-    const onSubmit = () => {
-        console.log("work here");
+    const onSubmit: SubmitHandler<AuthSchemaType> = (formData) => {
+        if ("username" in formData && !isLogin) {
+            registration.mutate({
+                ...formData,
+                confirmPassword: formData.password,
+            });
+            return;
+        }
+
+        login.mutate(formData);
     };
 
     return (
@@ -52,7 +64,7 @@ const AuthPage = () => {
                                 <Input
                                     placeholder="暱稱"
                                     control={control}
-                                    name="nickname"
+                                    name="username"
                                 />
                             )}
                             <Input
@@ -61,6 +73,7 @@ const AuthPage = () => {
                                 name="email"
                             />
                             <Input
+                                type="password"
                                 placeholder="Password"
                                 control={control}
                                 name="password"

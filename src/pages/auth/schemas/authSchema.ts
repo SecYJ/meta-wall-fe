@@ -8,7 +8,7 @@ export const loginSchema = z.object({
 });
 
 export const registrationSchema = loginSchema.extend({
-    nickname: z
+    username: z
         .string({ required_error: "暱稱為必填項" })
         .min(2, "暱稱至少 2 個字元以上"),
 });
