@@ -10,6 +10,7 @@ import {
 } from "./schemas/authSchema";
 import { useRegistration } from "./hooks/useRegistration";
 import { useLogin } from "./hooks/useLogin";
+import { AxiosError } from "axios";
 
 const AuthPage = () => {
     const [authState, setAuthState] = useState<"login" | "register">("login");

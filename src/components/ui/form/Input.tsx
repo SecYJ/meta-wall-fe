@@ -7,28 +7,35 @@ interface Props<T extends FieldValues>
     extends InputHTMLAttributes<HTMLInputElement> {
     control: Control<T>;
     name: Path<T>;
+    label?: string;
 }
 
 const Input = <T extends FieldValues>({
     control,
     name,
+    label,
     ...props
 }: Props<T>) => {
     const { field, fieldState } = useController({ control, name });
 
     return (
         <div className="space-y-1">
+            {label && <label htmlFor={name}>{label}</label>}
             <Box>
                 <input
+                    {...props}
+                    {...field}
                     className={cn(
                         "w-full px-6 py-4 placeholder:text-shadow",
                         props.className,
                     )}
-                    {...props}
-                    {...field}
                 />
             </Box>
-            <p className="text-sm text-danger">{fieldState.error?.message}</p>
+            {fieldState.error?.message && (
+                <p className="text-sm text-danger">
+                    {fieldState.error?.message}
+                </p>
+            )}
         </div>
     );
 };

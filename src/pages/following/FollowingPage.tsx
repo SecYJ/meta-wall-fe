@@ -1,7 +1,11 @@
 import { Box } from "@/components";
 import avatarLg from "/user-lg.png";
+import { useFollowing } from "./hooks/useFollowing";
 
 const FollowingPage = () => {
+    // NOTE: todo later since following is not implemented yet
+    const f = useFollowing();
+    console.log("fData", f.data);
     return (
         <div className="mt-4 space-y-4">
             {/* NOTE: post start here */}

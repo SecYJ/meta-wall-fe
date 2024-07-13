@@ -2,8 +2,19 @@ import { Box } from "@/components";
 import avatarLg from "/user-lg.png";
 import { LuThumbsUp } from "react-icons/lu";
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
+import { useEffect } from "react";
+import { req } from "@/apis/config";
 
 const LikedPostsPage = () => {
+    useEffect(() => {
+        const t = async () => {
+            const res = await req.get("/users/getLikeList");
+            console.log("res", res.data);
+        };
+
+        t();
+    }, []);
+
     return (
         <div className="mt-4">
             <Box

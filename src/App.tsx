@@ -3,8 +3,6 @@ import "./App.css";
 import { ErrorBoundary } from "./components";
 import { ROUTES } from "./constants";
 import {
-    FollowingPage,
-    HomePage,
     Layout,
     LikedPostsPage,
     PostCreationPage,
@@ -16,6 +14,8 @@ import {
     AccountLayout,
 } from "./pages/account";
 import { AuthPage } from "./pages/auth";
+import { HomePage } from "./pages/home";
+import { FollowingPage } from "./pages/following";
 
 const App = () => {
     const router = createBrowserRouter([
